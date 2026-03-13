@@ -12,7 +12,21 @@ try:
 except ImportError:
     torch = None
 
-from torch.utils.tensorboard import SummaryWriter as _TBWriter
+try:
+    from torch.utils.tensorboard import SummaryWriter as _TBWriter
+except Exception:  # pragma: no cover - fallback when torch/tensorboard is missing
+    class _TBWriter:  # no-op fallback
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def add_scalar(self, *args, **kwargs):
+            return None
+
+        def flush(self):
+            return None
+
+        def close(self):
+            return None
 
 class AvgLogger:
     def __init__(self):

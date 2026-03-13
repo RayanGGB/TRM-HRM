@@ -254,7 +254,7 @@ class TimedRewardMachineEnvGym(gym.Wrapper):
 
 
 class TimedRewardMachineWrapperGym(gym.Wrapper):
-    def __init__(self, env, add_crm, gamma, crm_nums, crm_option=2, rs_gamma=0.99, add_rs=False):
+    def __init__(self, env, add_crm, gamma, crm_nums, crm_option=2, crm_radius=1, rs_gamma=0.99, add_rs=False):
         """
         RM wrapper
         --------------------
@@ -275,6 +275,7 @@ class TimedRewardMachineWrapperGym(gym.Wrapper):
         self.env.add_rs  = add_rs
         self.crm_option = crm_option
         self.crm_nums = crm_nums
+        self.crm_radius = int(crm_radius)
 
         self.gamma = gamma  # Discount factor for the RM rewards
         #self.clock_spaces = self.env.clock_space
@@ -344,7 +345,7 @@ class TimedRewardMachineWrapperGym(gym.Wrapper):
         info = {}
         if terminated:
             info["terminal_observation"] = rm_next_obs  # Store the terminal observation in info
-        delay_index = int(action[0]*(1/self.env.discretization_param))
+        delay_index = int(round(action[0] * (1 / self.env.discretization_param)))
         env_action = int(action[1]) if self.env.global_dtype == np.int32 else action[1:]
         action = np.array([delay_index, env_action], dtype=self.env.global_dtype)
         action_index = self.env.action_to_index[tuple(action)]
@@ -353,238 +354,96 @@ class TimedRewardMachineWrapperGym(gym.Wrapper):
 
     def _get_crm_experience(self, obs, config, action, next_obs, env_done, true_props, info):
         """
-        Returns a list of counterfactual experiences generated per each RM state.
-        Format: [..., (obs, action, r, new_obs, done), ...]
+        Returns local digital-time CI transitions for the observed label and source RM state.
+        Counterfactuals keep (s, s', a, u) fixed and vary only:
+            - clock valuation v_bar within an L_inf ball around v
+            - delay d_bar that satisfies at least one relevant outgoing guard from u
         """
-        reachable_states = set()
-
-        current_state, clock_values = config[0], config[1].copy()
-        delay, env_action = action[0], int(action[1])
-
-        #print('Clock values in CRM:', clock_values)
-        #print('Delay values in CRM:', delay)
-
-        experiences = []
-        #print('Inside function', action)
-        # 0 for complete random clock values
-        # 1 for random clock values that statisfy guard
-        # 2 for random clock values that satisfy guard and also corner points
-        #print('Current state:', current_state)
-        #print('Clock values:', clock_values)
-        if self.crm_option == 0:
-            # Random clock values
-            #print('Max delay:', self.env.max_delay)
-            #for rm_state in [current_state]:
-            #print('Current state:', current_state)
-            #print('Clock values:', clock_values)
-            all_possible_crms = dict()
-            current_state, current_clock = config[0], config[1].copy()
-            rm_states = [current_state]
-            for rm_state in rm_states:
-            #for rm_state in range(self.env.num_rm_states):
-                if rm_state == self.env.current_rm.terminal_state:
-                    continue
-                all_possible_crms[rm_state] = []
-                
-                max_upper_bound = 0 # 0 for no crm on v
-                max_lower_bound = 4 # 0 for no crm on v
-                                
-                clock_upper_bounds = min(max_upper_bound,int(max([self.env.max_constant_dict[clock] - current_clock[clock] for clock in self.clock_names])))+1
-                clock_lower_bounds = -min(max_lower_bound,int(min(current_clock.values())))
-
-                shift_dict_list = clock_dict_combinations_same_bounds(self.clock_names, clock_lower_bounds, clock_upper_bounds)
-                #print('Shift dict list:', shift_dict_list)
-
-
-                crm_set = [clock_shift_dict(current_clock, shift, self.env.max_constant_dict) for shift in shift_dict_list]
-                
-                for crm_clock_values in crm_set:
-                    assert min(crm_clock_values.values()) >= 0
-                    min_current_clock_value = min(crm_clock_values.values())
-                    all_possible_delays = np.arange(0, min(self.env.max_constant - min_current_clock_value, self.env.max_delay), self.env.discretization_param)
-                    #print('All possible delays:', list(all_possible_delays))
-                    all_possible_new_actions = [np.array([d,env_action]) for d in all_possible_delays]
-                    #print(config)
-                    all_possible_crms[rm_state].append((crm_clock_values, all_possible_new_actions))
-
-        elif self.crm_option == 1:
-            # Random clock values that satisfy the guard
-            min_current_clock_value = min(clock_values.values())
-            if min_current_clock_value >= self.env.max_constant:
-                all_possible_delays = []   
-            else:
-                dnf_formulas = self.env.current_rm.known_transitions_dnf[(current_state, true_props)]
-                state_guards = [theta[2] for dnf_formula in dnf_formulas for theta in self.env.current_rm.outgoing_transitions[current_state][dnf_formula]]
-
-                curr_state_guard = random.choice(state_guards)
-
-                curr_integral = clock_values
-                guard_bounds = extract_bounds(curr_state_guard, max_constant=self.env.max_constant, global_dtype=np.float32, delta=0.0, clock_names=self.clock_names)
-                #print(f"guard_bounds: {guard_bounds}, curr_integral: {curr_integral}")
-                
-                #print('Clock names', self.clock_names)
-                delay_bounds = {clock: np.clip(np.array(guard_bounds[clock])-curr_integral[clock]-1,0,self.env.max_delay) for clock in self.clock_names}
-                # random sample one space from the list of possible clock spaces
-                lower_delay = max([delay_bounds[clock][0] for clock in delay_bounds])
-                upper_delay = min([delay_bounds[clock][1] for clock in delay_bounds])
-                
-                if self.env.discretization_param == 1:
-                    all_possible_delays = range(int(lower_delay), int(upper_delay)+1)
-                else:
-                    all_possible_delays = [d for d in np.arange(lower_delay, upper_delay+1, self.env.discretization_param)]
-            
-            #print('All possible delays:', list(all_possible_delays))
-            all_possible_new_actions = [np.array([d,env_action]) for d in all_possible_delays]
-            all_possible_crms = {config[0]: [(config[1], all_possible_new_actions)]}
-
-        elif self.crm_option == 2:
-
-            all_possible_crms = dict()
-            for rm_state in range(self.env.num_rm_states):
-                if rm_state == self.env.current_rm.terminal_state:
-                    continue
-                min_current_clock_value = min(clock_values.values())
-                if min_current_clock_value >= self.env.max_constant:
-                    all_possible_delays = []   
-                else:
-                    
-                    if (rm_state, true_props) in self.env.current_rm.known_transitions_dnf:
-                        dnf_formulas = self.env.current_rm.known_transitions_dnf[(rm_state, true_props)]
-                    else:
-                        for dnf_formula in self.env.current_rm.outgoing_transitions[rm_state]:
-                            if not evaluate_dnf(dnf_formula, true_props):
-                                continue
-                            self.env.current_rm.known_transitions_dnf.setdefault((rm_state, true_props),[]).append(dnf_formula)
-                        dnf_formulas = self.env.current_rm.known_transitions_dnf[(rm_state, true_props)]
-
-                    state_guards = [theta[2] for dnf_formula in dnf_formulas for theta in self.env.current_rm.outgoing_transitions[rm_state][dnf_formula]]
-
-                    curr_state_guard = random.choice(state_guards)
-
-                    curr_integral = clock_values
-                    guard_bounds = extract_bounds(curr_state_guard, max_constant=self.env.max_constant, global_dtype=np.float32, delta=0.0, clock_names=self.clock_names)
-
-                    delay_bounds = {clock: np.clip(np.array(guard_bounds[clock])-curr_integral[clock]-1,0, self.env.max_delay) for clock in self.clock_names}
-                    # random sample one space from the list of possible clock spaces
-                    lower_delay = max([delay_bounds[clock][0] for clock in delay_bounds])
-                    upper_delay = min([delay_bounds[clock][1] for clock in delay_bounds])
-                    
-                    all_possible_delays = range(int(lower_delay), int(upper_delay)+1)
-                
-                #print('All possible delays:', list(all_possible_delays))
-                
-                all_possible_new_actions = [np.array([d,env_action]) for d in all_possible_delays]
-                all_possible_crms[rm_state] = [(config[1], all_possible_new_actions)]
-
-        elif self.crm_option == 3:
-            all_possible_crms = dict()
-            current_state, current_clock = config[0], config[1].copy()
-            rm_states = [current_state]
-
-            for rm_state in rm_states:
-            #for rm_state in range(self.env.num_rm_states):
-                if rm_state == self.env.current_rm.terminal_state:
-                    continue
-                all_possible_crms.setdefault(rm_state, [])
-                max_upper_bound = 0 
-                max_lower_bound = 4 
-                                
-                clock_upper_bounds = min(max_upper_bound,int(max([self.env.max_constant_dict[clock] - current_clock[clock] for clock in self.clock_names])))+1
-                clock_lower_bounds = -min(max_lower_bound,int(min(current_clock.values())))
-                
-                shift_dict_list = clock_dict_combinations_same_bounds(self.clock_names, clock_lower_bounds, clock_upper_bounds)
-
-                for s in shift_dict_list:
-                    crm_clock = clock_shift_dict(current_clock, s, self.env.max_constant_dict)
-                    if any(crm_clock[c] < 0 or crm_clock[c] > self.env.max_constant_dict[c] for c in self.clock_names):
-                        continue
-
-                    # collect DNF formulas that fire with current true_props
-                    if (rm_state, true_props) in self.env.current_rm.known_transitions_dnf:
-                        dnf_formulas = self.env.current_rm.known_transitions_dnf[(rm_state, true_props)]
-                    else:
-                        for dnf in self.env.current_rm.outgoing_transitions[rm_state]:
-                            if evaluate_dnf(dnf, true_props):
-                                self.env.current_rm.known_transitions_dnf.setdefault(
-                                    (rm_state, true_props), []
-                                ).append(dnf)
-                        dnf_formulas = self.env.current_rm.known_transitions_dnf.get((rm_state, true_props), [])
-
-                    if not dnf_formulas:
-                        continue
-
-                    state_guards = [theta[2] for dnf in dnf_formulas for theta in self.env.current_rm.outgoing_transitions[rm_state][dnf]]
-                    if not state_guards:
-                        continue
-
-                    # Build union of feasible delay intervals over all guards
-                    guard_intervals = []
-                    for guard in state_guards:
-                        bounds = extract_bounds(
-                            guard, max_constant=self.env.max_constant,
-                            global_dtype=np.float32, delta=0.0,
-                            clock_names=self.clock_names,
-                        )
-                        delay_bounds = {
-                            c: np.clip(np.array(bounds[c]) - crm_clock[c] - 1, 0, self.env.max_delay) for c in self.clock_names
-                        }
-                        lo = min(delay_bounds[c][0] for c in delay_bounds)
-                        hi = max(delay_bounds[c][1] for c in delay_bounds)
-
-                        # Respect remaining slack until any clock hits max
-                        # d_max_clock = min(self.env.max_constant_dict[c] - crm_clock[c] for c in self.clock_names)
-                        hi = min(hi, self.env.max_delay)
-
-
-                        if hi >= lo:
-                            guard_intervals.append((int(lo), int(hi)))
-
-                    if not guard_intervals:
-                        continue
-
-                    guard_intervals.sort()
-                    merged = []
-                    for lo, hi in guard_intervals:
-                        if not merged or lo > merged[-1][1] + 1:
-                            merged.append([lo, hi])
-                        else:
-                            merged[-1][1] = max(merged[-1][1], hi)
-                    #print('Merged intervals:', merged)
-                    all_possible_delays = []
-                    if self.env.discretization_param == 1:
-                        for lo, hi in merged:
-                            all_possible_delays.extend(range(int(lo), int(hi) + 1))
-                    else:
-                        step = self.env.discretization_param
-                        for lo, hi in merged:
-                            all_possible_delays.extend([float(d) for d in np.arange(lo, hi + step, step)])
-
-                    if not all_possible_delays:
-                        continue
-
-                    actions = [np.array([d, env_action]) for d in all_possible_delays]
-                    if actions:
-                        all_possible_crms[rm_state].append((crm_clock, actions))
-
-        else:
-            return []
-
-
         rm_id = self.env.current_rm_id
         rm = self.env.current_rm
-        #print(all_possible_crms)
-        for state in all_possible_crms:
-            if state == rm.terminal_state:
-                continue
-            for crm_clock, actions in all_possible_crms[state]:
-                config2 = (state, crm_clock)
-                for new_action in actions:
-                    exp, next_u = self._get_rm_experience(
-                        rm_id, rm, config2, obs, new_action, next_obs, env_done, true_props, info
-                    )
-                    experiences.append(exp)
-        
-        
+
+        current_state = int(config[0])
+        current_clock = config[1].copy()
+        if current_state == rm.terminal_state:
+            return []
+
+        discretization_param = float(self.env.discretization_param)
+        env_action = int(action[1]) if self.env.global_dtype == np.int32 else action[1:]
+        observed_delay = float(action[0]) * discretization_param
+
+        # Keep only outgoing transitions relevant to the observed event label.
+        if (current_state, true_props) in rm.known_transitions_dnf:
+            dnf_formulas = list(rm.known_transitions_dnf[(current_state, true_props)])
+        else:
+            dnf_formulas = []
+            for dnf_formula in rm.outgoing_transitions.get(current_state, {}):
+                if evaluate_dnf(dnf_formula, true_props):
+                    dnf_formulas.append(dnf_formula)
+            rm.known_transitions_dnf[(current_state, true_props)] = dnf_formulas
+
+        if not dnf_formulas:
+            return []
+
+        relevant_guards = []
+        for dnf_formula in dnf_formulas:
+            for trans in rm.outgoing_transitions[current_state][dnf_formula]:
+                relevant_guards.append(trans[2])
+        if not relevant_guards:
+            return []
+
+        radius = max(0, int(self.crm_radius))
+        clock_value_grids = []
+        for clock in self.clock_names:
+            center = int(current_clock[clock])
+            low = max(0, center - radius)
+            high = min(int(self.env.max_constant_dict[clock]), center + radius)
+            values = list(range(low, high + 1))
+            if not values:
+                values = [center]
+            clock_value_grids.append(values)
+
+        clock_candidates = []
+        for values in itertools.product(*clock_value_grids):
+            clock_candidates.append(
+                {clock: int(values[idx]) for idx, clock in enumerate(self.clock_names)}
+            )
+
+        delay_candidates = [
+            delay_idx * discretization_param for delay_idx in range(self.env.delay_space.n)
+        ]
+
+        experiences = []
+        for crm_clock in clock_candidates:
+            for crm_delay in delay_candidates:
+                # Keep (s, s', a) fixed, but avoid duplicating the real transition itself.
+                if (
+                    abs(crm_delay - observed_delay) < 1e-12
+                    and all(crm_clock[c] == current_clock[c] for c in self.clock_names)
+                ):
+                    continue
+
+                progressed_clock = {
+                    clock: crm_clock[clock] + crm_delay + 1 for clock in self.clock_names
+                }
+                if not any(
+                    rm._evaluate_guard(guard, progressed_clock) for guard in relevant_guards
+                ):
+                    continue
+
+                new_action = np.array([crm_delay, env_action])
+                exp, _ = self._get_rm_experience(
+                    rm_id,
+                    rm,
+                    (current_state, crm_clock),
+                    obs,
+                    new_action,
+                    next_obs,
+                    env_done,
+                    true_props,
+                    info,
+                )
+                experiences.append(exp)
+
         seen = set()
         deduped = []
         for e in experiences:

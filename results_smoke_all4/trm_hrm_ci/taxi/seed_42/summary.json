@@ -1,0 +1,11 @@
+{
+  "algorithm": "trm_hrm_ci",
+  "completed": true,
+  "elapsed_seconds": 0.20963525772094727,
+  "episodes": 2,
+  "global_step": 200,
+  "interrupted": false,
+  "parallel_option_updates": true,
+  "run_dir": "results_smoke_all4\\trm_hrm_ci\\taxi\\seed_42",
+  "seed": 42
+}

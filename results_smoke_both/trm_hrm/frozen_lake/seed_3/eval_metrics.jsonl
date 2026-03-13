@@ -1,0 +1,2 @@
+{"episode_discounted_reward": -1573.4219289156315, "episode_reward": -1620.0, "episode_time": 54.0, "eval_id": 0, "global_step": 30, "timestamp": 1773275302.979602}
+{"episode_discounted_reward": -1171.5898809341695, "episode_reward": -1250.0, "episode_time": 107.0, "eval_id": 1, "global_step": 60, "timestamp": 1773275303.056134}

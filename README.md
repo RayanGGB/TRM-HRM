@@ -53,3 +53,14 @@ For example (from the repository root):
 python tb_extract.py -b Logs/disc_vs_cont_Taxi
 ```
 will generate the plots for *performance difference for various timed interpretations* (Figure 7).
+
+## Digital Baseline vs TRM+HRM Extension
+
+For the new checkpointable digital-time comparison between:
+- original TRM digital baseline, and
+- the new TRM+HRM extension,
+
+see:
+- `README_TRM_HRM.md`
+- `run_trm_compare.py`
+- `plot_trm_compare.py`

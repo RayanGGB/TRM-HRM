@@ -1,0 +1,69 @@
+{
+  "algorithms": [
+    "trm_hrm"
+  ],
+  "args": {
+    "add_ci": 1,
+    "alg": "trm_hrm",
+    "checkpoint_every_episodes": 2,
+    "checkpoint_every_minutes": 0.05,
+    "checkpoint_every_steps": 100,
+    "crm_nums": 15,
+    "crm_option": 3,
+    "device": "cpu",
+    "discretization_param": 1.0,
+    "env_type": "taxi",
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "eval_every_steps": 100,
+    "force": false,
+    "gamma": 0.999,
+    "hrm_lr": 0.8,
+    "hrm_lr_decay": 0.999,
+    "learning_starts": 0,
+    "log_every_steps": 50,
+    "lr": 0.8,
+    "lr_decay": 0.999,
+    "min_epsilon": 0.0,
+    "num_seeds": 10,
+    "parallel_option_updates": true,
+    "q_init": 10.0,
+    "r_minus": 0.0,
+    "r_plus": 1.0,
+    "results_root": "results_smoke",
+    "resume": false,
+    "save_milestones": false,
+    "seed_start": 42,
+    "seeds": "42",
+    "total_timesteps": 200,
+    "trm_name": null
+  },
+  "runs": [
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 0.1277759075164795,
+        "episodes": 2,
+        "global_step": 200,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_smoke\\trm_hrm\\taxi\\seed_42",
+        "seed": 42
+      }
+    }
+  ],
+  "seeds": [
+    42
+  ],
+  "tasks": [
+    [
+      "taxi",
+      "env/Taxi/disc_vs_cont.txt"
+    ]
+  ]
+}

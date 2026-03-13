@@ -2,7 +2,10 @@ import random, time
 import matplotlib.pyplot as plt
 from avg_tb import SummaryWriter
 import numpy as np
-import torch
+try:
+    import torch
+except ImportError:  # pragma: no cover
+    torch = None
 # from torch.utils.tensorboard import SummaryWriter
 from avg_tb import SummaryWriter
 import os

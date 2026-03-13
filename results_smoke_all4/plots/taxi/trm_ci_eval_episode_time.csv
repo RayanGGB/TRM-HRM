@@ -1,0 +1,3 @@
+global_step,mean,std,num_seeds
+100,151.0,0.0,1
+200,197.0,0.0,1

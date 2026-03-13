@@ -1,0 +1,10 @@
+{
+  "algorithm": "trm_baseline",
+  "completed": true,
+  "elapsed_seconds": 0.07727313041687012,
+  "episodes": 1,
+  "global_step": 80,
+  "interrupted": false,
+  "run_dir": "results_resume_smoke\\trm_baseline\\taxi\\seed_7",
+  "seed": 7
+}

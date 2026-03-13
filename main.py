@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import gymnasium as gym
+from gymnasium.error import DependencyNotInstalled
 import numpy as np
 import imageio.v2 as imageio
 import PIL.Image
@@ -176,8 +177,11 @@ def discrete_q_learning(env_type, trm_name, add_crm, corner_abstraction, discret
     )
     agg.write_avg(path.join("./q_learning_log_avg", base_exp, avg_run))
 
-    # Use the last run’s Q for the demo video (unchanged behavior)
-    optimal_run(env, last_Q, env_actions, gamma)
+    # Use the last run's Q for the demo video when rendering dependencies exist.
+    try:
+        optimal_run(env, last_Q, env_actions, gamma)
+    except DependencyNotInstalled as exc:
+        print(f"Skipping demo video generation: {exc}")
 
 def main():
     parser = argparse.ArgumentParser(

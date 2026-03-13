@@ -1,0 +1,4 @@
+global_step,episode,running_reward,running_time,running_discounted_reward,episode_reward,episode_time,episode_discounted_reward,epsilon_low,epsilon_high,lr_low,lr_high,timestamp
+20,0,0.0,0.0,0.0,0.0,0.0,0.0,0.9,0.9,0.8,0.8,1773275302.5230443
+40,0,0.0,0.0,0.0,0.0,0.0,0.0,0.9,0.9,0.8,0.8,1773275302.6121073
+60,0,0.0,0.0,0.0,0.0,0.0,0.0,0.9,0.9,0.8,0.8,1773275302.6473653

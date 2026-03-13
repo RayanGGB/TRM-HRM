@@ -1,0 +1,10 @@
+{
+  "algorithm": "trm_baseline",
+  "completed": true,
+  "elapsed_seconds": 0.0981283187866211,
+  "episodes": 1,
+  "global_step": 60,
+  "interrupted": false,
+  "run_dir": "results_smoke_both\\trm_baseline\\frozen_lake\\seed_3",
+  "seed": 3
+}
