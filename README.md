@@ -10,6 +10,16 @@ This repository contains:
 
 The comparison is designed for reproducibility (fixed seeds, structured outputs, checkpoint/resume, aggregated plots).
 
+## Research Context
+
+This project studies **variable autonomy** in a neurosymbolic RL setting with Timed Reward Machines (TRMs).
+
+Core question:
+- can hierarchical control (HRM-style options) and local counterfactual imagination (CI/CRM) improve learning over a standard digital-time TRM baseline?
+
+Detailed motivation, formalism, and discussion are in the research report:
+- [Report (PDF)](./Report_Neurosymbolic%20Variable%20Autonomy_Rayan%20Guergueb.pdf)
+
 ## What Is Compared
 
 Main entry point for the new experiments:
@@ -24,6 +34,57 @@ Methods:
 Supported digital tasks:
 - Taxi (`env/Taxi/disc_vs_cont.txt`)
 - Frozen Lake (`env/Frozen_Lake/disc_vs_cont.txt`)
+
+## Key Findings (Current `results_main` Snapshot)
+
+Setup used for the numbers below:
+- 10 seeds (`42..51`)
+- `300000` timesteps
+- final evaluation point at global step `300000`
+- aggregated from `results_main/plots/*/trm_*_eval_*.csv`
+
+### Taxi (digital)
+
+Final discounted reward (mean +/- std):
+- `trm_vanilla`: `1296.07 +/- 39.95`
+- `trm_ci`: `1489.63 +/- 19.14`
+- `trm_hrm`: `1303.93 +/- 34.39`
+- `trm_hrm_ci`: `1536.35 +/- 13.53` (**best**)
+
+Final episode time (lower is better, mean +/- std):
+- `trm_vanilla`: `50.0 +/- 2.28`
+- `trm_ci`: `40.2 +/- 1.4`
+- `trm_hrm`: `49.9 +/- 2.91`
+- `trm_hrm_ci`: `36.8 +/- 0.98` (**best**)
+
+Takeaway:
+- CI gives a strong gain over vanilla TRM.
+- HRM alone is close to vanilla on Taxi.
+- HRM+CI is the strongest and most stable variant on Taxi.
+
+### Frozen Lake (digital)
+
+Final discounted reward (mean +/- std):
+- `trm_vanilla`: `240.43 +/- 425.80`
+- `trm_ci`: `171.54 +/- 433.60`
+- `trm_hrm`: `94.79 +/- 397.84`
+- `trm_hrm_ci`: `167.94 +/- 540.97`
+
+Final episode time (lower is better, mean +/- std):
+- `trm_vanilla`: `40.6 +/- 25.39`
+- `trm_ci`: `44.3 +/- 24.46`
+- `trm_hrm`: `53.9 +/- 27.35`
+- `trm_hrm_ci`: `40.7 +/- 23.59`
+
+Takeaway:
+- Frozen Lake results are high-variance (std often larger than mean reward).
+- No robust ranking emerges at this budget; extra seeds and/or larger training budget are needed.
+
+Associated plots:
+- `results_main/plots/taxi/taxi_eval_episode_discounted_reward.png`
+- `results_main/plots/taxi/taxi_eval_episode_time.png`
+- `results_main/plots/frozen_lake/eval_episode_discounted_reward.png`
+- `results_main/plots/frozen_lake/eval_episode_time.png`
 
 ## Quick Start
 
