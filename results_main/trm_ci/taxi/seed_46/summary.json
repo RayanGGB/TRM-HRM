@@ -1,0 +1,10 @@
+{
+  "algorithm": "trm_ci",
+  "completed": true,
+  "elapsed_seconds": 264.8038139343262,
+  "episodes": 11989,
+  "global_step": 300000,
+  "interrupted": false,
+  "run_dir": "results_main/trm_ci/taxi/seed_46",
+  "seed": 46
+}

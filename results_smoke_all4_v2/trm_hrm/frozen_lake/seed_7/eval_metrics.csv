@@ -1,3 +1,0 @@
-global_step,eval_id,episode_reward,episode_time,episode_discounted_reward,timestamp
-60,0,-1650.0,48.0,-1605.7369945296177,1773310475.1089032
-120,1,-740.0,33.0,-728.7956930472449,1773310475.1212597

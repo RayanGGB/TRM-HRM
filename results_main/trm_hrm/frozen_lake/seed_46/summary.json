@@ -1,0 +1,11 @@
+{
+  "algorithm": "trm_hrm",
+  "completed": true,
+  "elapsed_seconds": 49.563074350357056,
+  "episodes": 10976,
+  "global_step": 300000,
+  "interrupted": false,
+  "parallel_option_updates": true,
+  "run_dir": "results_main/trm_hrm/frozen_lake/seed_46",
+  "seed": 46
+}

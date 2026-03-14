@@ -59,7 +59,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Aggregate and plot TRM comparison metrics."
     )
-    parser.add_argument("--results-root", default="results")
+    parser.add_argument("--results-root", default="results_main")
     parser.add_argument("--env-type", choices=["taxi", "frozen_lake", "both"], default="both")
     parser.add_argument("--source", choices=["eval", "train"], default="eval")
     parser.add_argument(

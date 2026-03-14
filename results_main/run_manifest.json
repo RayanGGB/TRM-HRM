@@ -1,0 +1,1549 @@
+{
+  "algorithms": [
+    "trm_vanilla",
+    "trm_ci",
+    "trm_hrm",
+    "trm_hrm_ci"
+  ],
+  "args": {
+    "add_ci": 1,
+    "alg": "all4",
+    "checkpoint_every_episodes": 25,
+    "checkpoint_every_minutes": 15.0,
+    "checkpoint_every_steps": 20000,
+    "crm_nums": 15,
+    "crm_option": 3,
+    "crm_radius": 1,
+    "device": "cpu",
+    "discretization_param": 1.0,
+    "env_type": "both",
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "eval_every_steps": 2000,
+    "force": false,
+    "gamma": 0.999,
+    "hrm_lr": 0.8,
+    "hrm_lr_decay": 0.999,
+    "learning_starts": 0,
+    "log_every_steps": 100,
+    "lr": 0.8,
+    "lr_decay": 0.999,
+    "min_epsilon": 0.0,
+    "num_seeds": 10,
+    "parallel_option_updates": true,
+    "q_init": 10.0,
+    "r_minus": 0.0,
+    "r_plus": 1.0,
+    "results_root": "results_main",
+    "resume": false,
+    "save_milestones": false,
+    "seed_start": 42,
+    "seeds": "42,43,44,45,46,47,48,49,50,51",
+    "total_timesteps": 300000,
+    "trm_name": null
+  },
+  "runs": [
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 46.30969977378845,
+        "episodes": 10069,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 274.33006501197815,
+        "episodes": 11900,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 58.17887592315674,
+        "episodes": 10217,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 365.69685411453247,
+        "episodes": 14007,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 48.378201484680176,
+        "episodes": 10187,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 270.0190954208374,
+        "episodes": 11959,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 56.920753955841064,
+        "episodes": 10112,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 358.97730016708374,
+        "episodes": 14066,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 47.70680904388428,
+        "episodes": 9611,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 273.58634781837463,
+        "episodes": 12455,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 58.073954582214355,
+        "episodes": 11656,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 352.18967509269714,
+        "episodes": 14073,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 44.8299674987793,
+        "episodes": 9534,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 262.17210364341736,
+        "episodes": 11493,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 55.07279896736145,
+        "episodes": 10947,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 353.23738265037537,
+        "episodes": 13421,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 46.52705955505371,
+        "episodes": 10169,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 264.8038139343262,
+        "episodes": 11989,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 55.48161816596985,
+        "episodes": 11062,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 346.6222994327545,
+        "episodes": 13501,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 47.52846026420593,
+        "episodes": 9896,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 267.0895104408264,
+        "episodes": 12420,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 56.57147574424744,
+        "episodes": 10146,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 350.6740701198578,
+        "episodes": 14066,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 47.236886501312256,
+        "episodes": 9510,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 260.0446255207062,
+        "episodes": 11554,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 55.76948380470276,
+        "episodes": 10034,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 347.3601562976837,
+        "episodes": 13450,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 46.82976055145264,
+        "episodes": 10086,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 261.0579319000244,
+        "episodes": 11467,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 56.831724405288696,
+        "episodes": 10918,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 351.7092390060425,
+        "episodes": 13446,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 46.723668813705444,
+        "episodes": 9665,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 265.62969493865967,
+        "episodes": 11756,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 57.724419832229614,
+        "episodes": 10240,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 364.682363986969,
+        "episodes": 13945,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "taxi",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 46.485541582107544,
+        "episodes": 9858,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/taxi/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "taxi",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 273.893349647522,
+        "episodes": 11825,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/taxi/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "taxi",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 56.055941104888916,
+        "episodes": 10538,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/taxi/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "taxi",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 348.0135943889618,
+        "episodes": 13892,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/taxi/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 36.00604271888733,
+        "episodes": 9909,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 100.19875049591064,
+        "episodes": 9705,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 48.98530626296997,
+        "episodes": 11051,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 42,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 141.53355622291565,
+        "episodes": 9773,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_42",
+        "seed": 42
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 37.6421856880188,
+        "episodes": 11499,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 103.14574408531189,
+        "episodes": 8501,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 48.847012758255005,
+        "episodes": 7201,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 43,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 143.61314797401428,
+        "episodes": 7499,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_43",
+        "seed": 43
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 37.110493659973145,
+        "episodes": 7385,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 102.38221144676208,
+        "episodes": 7614,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 49.39152407646179,
+        "episodes": 8747,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 44,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 141.908221244812,
+        "episodes": 7196,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_44",
+        "seed": 44
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 36.38904809951782,
+        "episodes": 9678,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 101.10584473609924,
+        "episodes": 9575,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 46.75111532211304,
+        "episodes": 9598,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 45,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 139.76093816757202,
+        "episodes": 11969,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_45",
+        "seed": 45
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 37.58067560195923,
+        "episodes": 8580,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 102.79725575447083,
+        "episodes": 9004,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 49.563074350357056,
+        "episodes": 10976,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 46,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 142.97089958190918,
+        "episodes": 7985,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_46",
+        "seed": 46
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 37.29529881477356,
+        "episodes": 12427,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 102.64892625808716,
+        "episodes": 8925,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 52.97188091278076,
+        "episodes": 16974,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 47,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 142.6168248653412,
+        "episodes": 10285,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_47",
+        "seed": 47
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 38.583256244659424,
+        "episodes": 13020,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 125.88392472267151,
+        "episodes": 13119,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 56.46868109703064,
+        "episodes": 11520,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 48,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 164.7293996810913,
+        "episodes": 12467,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_48",
+        "seed": 48
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 39.62918949127197,
+        "episodes": 7881,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 115.96265625953674,
+        "episodes": 7832,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 54.11973476409912,
+        "episodes": 8671,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 49,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 162.96059846878052,
+        "episodes": 7808,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_49",
+        "seed": 49
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 39.665765047073364,
+        "episodes": 7595,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 103.70930743217468,
+        "episodes": 8133,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 48.5265154838562,
+        "episodes": 8950,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 50,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 154.41298460960388,
+        "episodes": 8186,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_50",
+        "seed": 50
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_vanilla",
+      "env_type": "frozen_lake",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_vanilla",
+        "completed": true,
+        "elapsed_seconds": 40.43279767036438,
+        "episodes": 8146,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_vanilla/frozen_lake/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_baseline",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_ci",
+      "env_type": "frozen_lake",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_ci",
+        "completed": true,
+        "elapsed_seconds": 122.3940634727478,
+        "episodes": 9304,
+        "global_step": 300000,
+        "interrupted": false,
+        "run_dir": "results_main/trm_ci/frozen_lake/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_baseline",
+      "use_ci": true
+    },
+    {
+      "algorithm": "trm_hrm",
+      "env_type": "frozen_lake",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm",
+        "completed": true,
+        "elapsed_seconds": 53.59646964073181,
+        "episodes": 8802,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm/frozen_lake/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_hrm",
+      "use_ci": false
+    },
+    {
+      "algorithm": "trm_hrm_ci",
+      "env_type": "frozen_lake",
+      "seed": 51,
+      "status": "completed",
+      "summary": {
+        "algorithm": "trm_hrm_ci",
+        "completed": true,
+        "elapsed_seconds": 162.42400598526,
+        "episodes": 8053,
+        "global_step": 300000,
+        "interrupted": false,
+        "parallel_option_updates": true,
+        "run_dir": "results_main/trm_hrm_ci/frozen_lake/seed_51",
+        "seed": 51
+      },
+      "trainer": "trm_hrm",
+      "use_ci": true
+    }
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "tasks": [
+    [
+      "taxi",
+      "env/Taxi/disc_vs_cont.txt"
+    ],
+    [
+      "frozen_lake",
+      "env/Frozen_Lake/disc_vs_cont.txt"
+    ]
+  ]
+}

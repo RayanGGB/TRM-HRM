@@ -50,31 +50,31 @@ In this extension, baseline comparison runs through `run_trm_compare.py` to add 
 ### Fresh baseline run
 
 ```bash
-python run_trm_compare.py --alg baseline --env-type taxi --seeds 42 --total-timesteps 300000
+python run_trm_compare.py --alg baseline --env-type taxi --seeds 42 --total-timesteps 300000 --results-root results_main
 ```
 
 ### Resume baseline run
 
 ```bash
-python run_trm_compare.py --alg baseline --env-type taxi --seeds 42 --total-timesteps 300000 --resume
+python run_trm_compare.py --alg baseline --env-type taxi --seeds 42 --total-timesteps 300000 --results-root results_main --resume
 ```
 
 ### Fresh TRM+HRM run
 
 ```bash
-python run_trm_compare.py --alg trm_hrm --env-type taxi --seeds 42 --total-timesteps 300000
+python run_trm_compare.py --alg trm_hrm --env-type taxi --seeds 42 --total-timesteps 300000 --results-root results_main
 ```
 
 ### Resume TRM+HRM run
 
 ```bash
-python run_trm_compare.py --alg trm_hrm --env-type taxi --seeds 42 --total-timesteps 300000 --resume
+python run_trm_compare.py --alg trm_hrm --env-type taxi --seeds 42 --total-timesteps 300000 --results-root results_main --resume
 ```
 
 ### Full 4-behavior comparison on paper digital tasks (Taxi + Frozen Lake)
 
 ```bash
-python run_trm_compare.py --alg all4 --env-type both --seeds 42,43,44,45,46,47,48,49,50,51 --total-timesteps 300000
+python run_trm_compare.py --alg all4 --env-type both --seeds 42,43,44,45,46,47,48,49,50,51 --total-timesteps 300000 --results-root results_main
 ```
 
 ## Checkpoint / Resume Design
@@ -82,7 +82,7 @@ python run_trm_compare.py --alg all4 --env-type both --seeds 42,43,44,45,46,47,4
 Each run writes:
 
 ```text
-results/<algorithm>/<task>/seed_<N>/
+results_main/<algorithm>/<task>/seed_<N>/
   config.json
   summary.json
   train_metrics.csv
@@ -95,6 +95,8 @@ results/<algorithm>/<task>/seed_<N>/
     final.pkl
     step_XXXXXXXXX.pkl   (if milestone saving enabled)
 ```
+
+If you want a lightweight folder for GitHub, keep `results_main/` with metrics/plots and move heavy checkpoint folders to `artifacts/results_main_non_git/`.
 
 Checkpoint payload contains:
 - Q tables (baseline or HRM controller/options),
@@ -130,15 +132,21 @@ python run_trm_compare.py ... --force
 Generate comparison plots:
 
 ```bash
-python plot_trm_compare.py --results-root results --env-type both --source eval --metrics episode_discounted_reward,episode_time
+python plot_trm_compare.py --results-root results_main --env-type both --source eval --metrics episode_discounted_reward,episode_time
 ```
 
 Outputs:
-- `results/plots/<task>/eval_episode_discounted_reward.png`
-- `results/plots/<task>/eval_episode_time.png`
+- `results_main/plots/<task>/eval_episode_discounted_reward.png`
+- `results_main/plots/<task>/eval_episode_time.png`
 - per-algorithm aggregated CSVs in the same folder.
 
 The plotting script tolerates missing seeds and uses available runs only.
+
+Before pushing results to GitHub (optional cleanup of heavy files):
+
+```bash
+python scripts/prepare_results_for_github.py
+```
 
 ## 3-GPU / 3-Worker Strategy
 
@@ -151,9 +159,9 @@ bash scripts/run_compare_3gpus.sh
 or manually:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python run_trm_compare.py --alg all4 --env-type both --seeds 42,45,48,51 --device cuda:0 &
-CUDA_VISIBLE_DEVICES=1 python run_trm_compare.py --alg all4 --env-type both --seeds 43,46,49 --device cuda:1 &
-CUDA_VISIBLE_DEVICES=2 python run_trm_compare.py --alg all4 --env-type both --seeds 44,47,50 --device cuda:2 &
+CUDA_VISIBLE_DEVICES=0 python run_trm_compare.py --alg all4 --env-type both --seeds 42,45,48,51 --device cuda:0 --results-root results_main &
+CUDA_VISIBLE_DEVICES=1 python run_trm_compare.py --alg all4 --env-type both --seeds 43,46,49 --device cuda:1 --results-root results_main &
+CUDA_VISIBLE_DEVICES=2 python run_trm_compare.py --alg all4 --env-type both --seeds 44,47,50 --device cuda:2 --results-root results_main &
 wait
 ```
 

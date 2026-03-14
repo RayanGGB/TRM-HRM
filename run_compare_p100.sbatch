@@ -5,12 +5,12 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=23:50:00
-#SBATCH --output=logs/%x-%j.out
-#SBATCH --error=logs/%x-%j.err
+#SBATCH --output=artifacts/slurm_logs/%x-%j.out
+#SBATCH --error=artifacts/slurm_logs/%x-%j.err
 
 set -euo pipefail
 
-mkdir -p logs
+mkdir -p artifacts/slurm_logs
 cd "$SLURM_SUBMIT_DIR"
 
 # Conda (important en batch non-interactif)

@@ -159,7 +159,7 @@ def main():
     parser.add_argument("--alg", choices=["baseline", "trm_hrm", "both", "all4"], default="all4")
     parser.add_argument("--env-type", choices=["taxi", "frozen_lake", "both"], default="both")
     parser.add_argument("--trm-name", default=None, help="Override TRM path (single env_type only).")
-    parser.add_argument("--results-root", default="results")
+    parser.add_argument("--results-root", default="results_main")
     parser.add_argument("--seeds", default=None, help="Comma-separated seeds, e.g. 42,43,44")
     parser.add_argument("--seed-start", type=int, default=42)
     parser.add_argument("--num-seeds", type=int, default=10)

@@ -45,12 +45,13 @@ tensorboard --logdir q_learning_logs
 ```
 
 ### Generating Graphs from the Article
-The TensorBoard logs for the TRM experiments *used in the article* are included in the `Logs/` folder.
+The TensorBoard logs for the TRM experiments *used in the article* are included in:
+- `artifacts/legacy/Logs_paper/`
 
 To extract and generate the SVG plots from those logs, run the provided extraction script.
 For example (from the repository root):
 ```bash
-python tb_extract.py -b Logs/disc_vs_cont_Taxi
+python tb_extract.py -b artifacts/legacy/Logs_paper/disc_vs_cont_Taxi
 ```
 will generate the plots for *performance difference for various timed interpretations* (Figure 7).
 
@@ -64,3 +65,12 @@ see:
 - `README_TRM_HRM.md`
 - `run_trm_compare.py`
 - `plot_trm_compare.py`
+
+## Workspace Hygiene
+
+To keep the repository clean:
+- publishable results are stored in `results_main/`,
+- generated temporary runs are grouped under `artifacts/dev_runs/`,
+- heavy run artifacts (for example checkpoints moved out of `results_main`) are stored in `artifacts/results_main_non_git/`,
+- large logs/results/checkpoints are ignored by `.gitignore`,
+- project layout notes are in `docs/PROJECT_STRUCTURE.md`.

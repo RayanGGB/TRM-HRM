@@ -1,7 +1,30 @@
 .DS_Store
+
+# Python
 .venv/
 __pycache__/
 *.pyc
+
+# Generated media
 videos/
 q_learning_logs/
+
+# Artifacts / outputs
+artifacts/
+# Keep legacy/temporary results out of git
+results_*/
+# Keep curated final results in git
+!results_main/
+!results_main/**
+logs/
+
+# Runtime logs
+*.out
+*.err
+**/tensorboard/
+**/checkpoints/
+
+# Never version heavy checkpoint binaries
+results_main/**/*.pkl
+
 
